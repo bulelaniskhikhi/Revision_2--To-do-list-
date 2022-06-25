@@ -1,12 +1,7 @@
 let myList = document.getElementById('myUL');
-console.log(myList)
-localStorage.clear()
-let lists = JSON.parse(localStorage.getItem('records')) ?
-JSON.parse(localStorage.getItem('records')) : [{
-    id: 1,
-    item: 'TV Stand',
-    createdDate: new Date()
-}];
+// localStorage.clear()
+let lists = JSON.parse(localStorage.getItem('records') || '[]')
+console.table(lists)
 
 function initiate() {
     myList.innerHTML = ''
@@ -27,10 +22,10 @@ function addData() {
     lists.push({
         id: lists.length + 1,
         item: todo,
-        createdDate: new Date()
+        createdDate: new Date(),
     });
-    initiate()
     localStorage.setItem('records', JSON.stringify(lists))
+    initiate()
 }
 
 function deleteData(event) {
